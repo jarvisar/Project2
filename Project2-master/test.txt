@@ -1,0 +1,127 @@
+
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
+
+class Board
+{
+    public:
+        Board(){
+            
+        }
+        
+        Board(int rows1, int cols1){
+            rows = rows1;
+            cols = cols1;
+            grid = new char* [rows];
+            for (int i(0); i < rows; i++){
+                grid[i] = new char[cols];
+                for (int j(0); j < cols; j++){
+                    grid[i][j] = '.';
+                }
+            }
+            
+            DisplayBoard(grid);
+            CheckLive(grid);
+        }
+        
+        void CreateCopy(char **grid){
+            copy = new char*[rows];
+            for (int i = 0; i < rows; i++){
+                copy[i] = new char[cols];
+                for (int j = 0; j < cols; j++){
+                    copy[i][j] = grid[i][j];
+                }
+            }
+        }
+        
+        void DisplayBoard(char **grid){
+            cout << endl;
+            for (int i = 0; i < rows; i++){
+                cout << setw(5);
+                for (int j = 0; j < cols; j++){
+                    cout << grid[i][j];
+                }
+                cout << endl;
+            }
+            
+        }
+        
+        void CheckLive(char **grid){
+            CreateCopy(grid);
+            for (int i = 0; i < rows; i++){
+                for (int j = 0; j < rows; j++){
+                    if ((copy[i][j + 1] == '*') && (j + 1) < cols )
+                        numCells++;
+                        
+                    if (copy[i][j - 1] == '*' && (j - 1) >= 0)
+                        numCells++;
+                        
+                    if (copy[i - 1][j - 1] == '*' && (j - 1) >= 0 && (i - 1) >= 0)
+                        numCells++;
+                        
+                    if (copy[i - 1][j] == '*' && (i - 1) >= 0)
+                        numCells++;
+                        
+                    if (copy[i - 1][j + 1] == '*' && (i - 1) >= 0 && (j + 1) < cols)
+                        numCells++;
+                        
+                    if (copy[i + 1][j - 1] == '*' && (i + 1) < rows && (j - 1) >= 0)
+                        numCells++;
+                        
+                    if (copy[i + 1][j] == '*' && (i + 1) < rows)
+                        numCells++;
+                        
+                    if (copy[i + 1][j + 1] == '*' && (i + 1) < rows && (j + 1) < cols)
+                        numCells++;
+                    
+                    
+                    if ((numCells < 2) || (numCells > 3))
+                        grid[i][j] = '.';
+                    else if (numCells == 2)
+                        grid[i][j] = copy[i][j];
+                    else if (numCells == 3)
+                        grid[i][j] = '*';
+                        
+                        
+                    numCells = 0;
+                }
+                
+            }
+            
+        }    
+    private:
+        int rows;
+        int cols;
+        char **grid;
+        char **copy;
+        int numCells;
+        
+};
+
+class Cell
+{
+    public:
+        Cell(int row1, int col2, bool status){
+            if (status == true)
+                alive = true;
+            else
+                alive = false;
+            row = row1;
+            col = col1;
+        }
+        
+    private:
+        bool alive;
+        int row;
+        int col;
+    
+};
+
+int main()
+{
+    Board gameboard(5, 5);
+    
+    return 0;
+}

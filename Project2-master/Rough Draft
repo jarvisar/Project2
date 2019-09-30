@@ -1,0 +1,138 @@
+/*
+ * Project Title:
+ * - Game of Life
+ * Description: 
+ * - The game must be able to import a set of initial settings from a text file to seed the game.
+ * - The user should be able to modify the rules to the game in some manner, even if it’s minor.
+ * - The game must be continuously displayed to the user as the cells in the grid turn on/off.
+ * Developers:
+ * - W Dentino  - dentinwm@mail.uc.edu
+ * - A Jarvis   - jarvisar@mail.uc.edu
+ *
+ * Help Received:
+ *
+ * Special Instructions: // optional
+ * - Change values in "Settings.txt"
+ * - Keep the .txt file in the same file as the .cpp file.
+ *
+ * Developer comments: // Not optional
+ * Developer 1:
+ * Please describe what tasks you performed and what your learned from your experience
+ * Developer 2:
+ * Please describe what tasks you performed and what your learned from your experience
+ */
+
+
+/*_______________________________________ CONCEPT ____________________________________________//
+ - Use a Board class to generate a 10x10 board of cells using data from a text file
+ - The text file will be pregenerated with a 10x10 matrix of 0's
+ - The user can change any 0 to a 1 to begin the game with a live cell at that location
+ - For loop in board constructor inputs 100 ints and uses each one to construct a Cell
+ - The text file will also include lines that allow the user to change how many adjacent cells
+    will cause a cell to die from over or underpopulation.
+    (use isdigit to ignore text instructions)
+ - Save the over and underpopulation numbers as private values of Board class.
+ - Use pointers from each cell to all adjacent cells to check the status of neighbors and
+    check rules to see if the cell lives or dies.
+ - Main() is a loop that calls the board constuctor then asks how many rounds of the game should
+    be run and lops the board updater that many times.
+*/
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+// Cell class used by Borad class to monitor status of cells
+class Cell {
+    public:
+    
+/* Function Name: Cell()
+ *
+ * Function Description:
+ * Cell default constructor
+ *
+ * Parameters:
+ * None
+ *
+ * return value:
+ * a Cell that is "dead"
+ */
+    Cell(){
+        alive = 0;
+    }
+    
+ /* Function Name: Cell(x)
+ *
+ * Function Description:
+ * Cell constructor
+ *
+ * Parameters:
+ * None
+ *
+ * return value:
+ * a Cell that is "alive" or "dead" based on input
+ */   
+    Cell(int x){
+        alive = x;
+    }
+    
+/* Function Name: isAlive()
+ *
+ * Function Description:
+ * tells if the cell is alive or dead
+ *
+ * Parameters:
+ * None
+ *
+ * return value:
+ * bool, 1 for alive, 0 for dead
+ */    
+    bool isAlive(){
+        return alive;
+    }
+
+/* Function Name: change
+ *
+ * Function Description:
+ * kills or births a cell
+ *
+ * Parameters:
+ * None
+ *
+ * return value:
+ * none
+ */    
+    void change(){
+        alive = !alive;
+    }
+    
+    private:
+    bool alive;
+};
+
+// Board class reads input from text file and populates the board then updates as needed
+class Board {
+    public:
+    // default constuctor ()
+    
+    // constructor (textfile)
+        // read with isdigit from text file
+    
+    // clone board <-- lets board update without being confused by values as they change
+    
+    // updater () <-- update board from boardClone
+    
+    // print board
+    
+    private:
+    
+};
+
+int main() {
+    // create a board
+    // loop for x "generations"
+    // end
+    
+    return 0
+}
